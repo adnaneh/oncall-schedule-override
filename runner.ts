@@ -1,0 +1,5 @@
+import {
+    runScript,
+} from '.'
+
+runScript();
