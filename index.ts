@@ -59,6 +59,11 @@ function writeOutputJson(scheduleEntries: ScheduleEntry[]): void {
     fs.writeFileSync(outPath, JSON.stringify(output, null, 2))
 }
 
+// Assumes:
+// - max 100 schedule or override entries
+// - overrides do not extend beyond the start or end of the schedule
+// - dates have an explicit timezone
+// Time complexity: O(n**2) and could be optimized to O(n) if the entries are sorted by start time, O(nlog(n)) otherwise
 export function buildActualShifts(
     scheduleEntries: ScheduleEntry[],
     overrides: ScheduleEntry[]
